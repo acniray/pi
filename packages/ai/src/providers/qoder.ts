@@ -1,3 +1,3 @@
-import { createQoderProvider } from "./qoder/native.js";
+import { createQoderProvider } from "./qoder/native.ts";
 
 export const qoderProvider = () => createQoderProvider("global");

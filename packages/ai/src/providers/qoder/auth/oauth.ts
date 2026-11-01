@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
 import type { ApiKeyAuth, OAuthAuth, OAuthCredential, ProviderAuthInteraction } from "../../../auth/types.ts";
-import { getMachineId } from "../cosy.js";
+import { getMachineId } from "../cosy.ts";
 import {
   getQoderDeviceLoginURL,
   getQoderDevicePollURL,
@@ -8,8 +8,8 @@ import {
   getQoderRegionConfig,
   getQoderUserInfoURL,
   type QoderMode,
-} from "../region.js";
-import { credentialsFromPat, decodePatRefresh, fetchUserInfo, isPatRefresh } from "./pat.js";
+} from "../region.ts";
+import { credentialsFromPat, decodePatRefresh, fetchUserInfo, isPatRefresh } from "./pat.ts";
 
 /**
  * Native Pi auth adapter. The coding agent owns credential storage and refresh

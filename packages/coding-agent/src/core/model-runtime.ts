@@ -227,7 +227,9 @@ export class ModelRuntime implements Models {
 				: new InMemoryCodingAgentModelsStore());
 		const builtinModelDataGeneratedAt = builtinProviderCatalog.getBuiltinModelDataGeneratedAt();
 		const providers = builtinProviderCatalog.builtinProviders().map((provider) => {
-			if (provider.id === "radius") return provider;
+			// Providers with their own authenticated model catalogs should not be
+      // wrapped with pi.dev static catalog refresh.
+      if (provider.id === "radius" || provider.id === "qoder" || provider.id === "qoder-cn") return provider;
 			// OpenRouter narrows the catalog to the models, limits and prices of the user's key.
 			if (provider.id === "openrouter") {
 				return withPersonalizedCatalog(

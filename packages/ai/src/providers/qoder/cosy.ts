@@ -2,7 +2,7 @@ import crypto from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
-import { BUNDLED_GATEWAY_COSY_VERSION, getGatewayCosyVersion } from "./cosy-version.js";
+import { BUNDLED_GATEWAY_COSY_VERSION, getGatewayCosyVersion } from "./cosy-version.ts";
 
 const qoderRSAPublicKey = `-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDA8iMH5c02LilrsERw9t6Pv5Nc

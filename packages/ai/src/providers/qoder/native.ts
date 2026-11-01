@@ -1,8 +1,8 @@
 import { createProvider, type Provider, type RefreshModelsContext } from "../../models.ts";
-import type { Api, Model, ProviderStreams } from "../../types.ts";
+import { lazyApi } from "../../api/lazy.ts";
+import type { Api, Model } from "../../types.ts";
 import { getCachedModels, staticCnModels, staticModels, updateQoderModelsCache } from "./catalog.js";
 import { qoderApiKeyAuth, qoderOAuth, resolveQoderIdentity, resolveQoderJobToken } from "./auth/oauth.js";
-import { streamQoder } from "./protocol/stream.js";
 import { getQoderRegionConfig, type QoderMode } from "./region.js";
 
 const QODER_API = "qoder-api" as Api;
@@ -44,10 +44,10 @@ async function refreshModels(mode: QoderMode, context: RefreshModelsContext): Pr
 /** Both Qoder regions share one native wire protocol and differ only in endpoints/auth/catalog. */
 export function createQoderProvider(mode: QoderMode): Provider<Api> {
   const region = getQoderRegionConfig(mode);
-  const api: ProviderStreams = {
-    stream: (model, context, options) => streamQoder(model, context, options),
-    streamSimple: (model, context, options) => streamQoder(model, context, options),
-  };
+  const api = lazyApi(async () => {
+    const { streamQoder } = await import("./protocol/stream.js");
+    return { stream: streamQoder, streamSimple: streamQoder };
+  });
   return createProvider<Api>({
     id: region.providerID,
     name: mode === "cn" ? "Qoder CN" : "Qoder",

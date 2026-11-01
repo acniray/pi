@@ -2,9 +2,9 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { dirname, join } from "node:path";
 import type { ThinkingLevel, ThinkingLevelMap } from "../../types.ts";
-import { buildAuthHeaders } from "./cosy.js";
-import { refreshGatewayCosyVersion } from "./cosy-version.js";
-import { getQoderBaseUrl, getQoderModelListURL, getQoderRegionConfig, type QoderMode } from "./region.js";
+import { buildAuthHeaders } from "./cosy.ts";
+import { refreshGatewayCosyVersion } from "./cosy-version.ts";
+import { getQoderBaseUrl, getQoderModelListURL, getQoderRegionConfig, type QoderMode } from "./region.ts";
 
 export const ZERO_COST = Object.freeze({ input: 0, output: 0, cacheRead: 0, cacheWrite: 0 });
 

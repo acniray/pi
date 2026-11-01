@@ -8,8 +8,8 @@ import type {
   ToolCall,
   ToolResultMessage,
 } from "../../../types.ts";
-import { stripDsmlResidue } from "./thinking.js";
-import { createQoderToolCallIdMapper } from "./tool-call-id.js";
+import { stripDsmlResidue } from "./thinking.ts";
+import { createQoderToolCallIdMapper } from "./tool-call-id.ts";
 
 /** OpenAI-style tool definition sent to the Qoder API. */
 interface QoderTool {

@@ -66,6 +66,8 @@ export interface QoderThinkingConfig {
 export interface QoderModelDef {
   id: string;
   upstreamKey?: string;
+  /** Private routing metadata persisted with Pi's dynamic model catalog. */
+  qoderModelConfig?: QoderModelEntry;
   name: string;
   api: "qoder-api";
   provider: "qoder" | "qoder-cn";
@@ -735,6 +737,8 @@ export async function updateQoderModelsCache(
 
       newModels.push({
         id: modelInfo.id,
+        upstreamKey: key,
+        qoderModelConfig: entry,
         name: modelInfo.name,
         api: "qoder-api",
         provider: getQoderRegionConfig(mode).providerID,

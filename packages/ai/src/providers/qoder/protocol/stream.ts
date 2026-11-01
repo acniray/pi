@@ -44,13 +44,14 @@ const MODEL_BUSY_MAX_WAIT_MS = 5_000;
 
 /** A recovery-eligible "model busy" rejection from Qoder's queue scheduler. */
 class QoderModelBusyError extends Error {
-  constructor(
-    message: string,
-    readonly retryAfterMs: number | undefined,
-    readonly sawModelOutput = false,
-  ) {
+  readonly retryAfterMs: number | undefined;
+  readonly sawModelOutput: boolean;
+
+  constructor(message: string, retryAfterMs: number | undefined, sawModelOutput = false) {
     super(message);
     this.name = "QoderModelBusyError";
+    this.retryAfterMs = retryAfterMs;
+    this.sawModelOutput = sawModelOutput;
   }
 }
 

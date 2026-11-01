@@ -1,9 +1,9 @@
 import { createProvider, type Provider, type RefreshModelsContext } from "../../models.ts";
 import { lazyApi } from "../../api/lazy.ts";
 import type { Api, Model } from "../../types.ts";
-import { getCachedModels, staticCnModels, staticModels, updateQoderModelsCache } from "./catalog.js";
-import { qoderApiKeyAuth, qoderOAuth, resolveQoderIdentity, resolveQoderJobToken } from "./auth/oauth.js";
-import { getQoderRegionConfig, type QoderMode } from "./region.js";
+import { getCachedModels, staticCnModels, staticModels, updateQoderModelsCache } from "./catalog.ts";
+import { qoderApiKeyAuth, qoderOAuth, resolveQoderIdentity, resolveQoderJobToken } from "./auth/oauth.ts";
+import { getQoderRegionConfig, type QoderMode } from "./region.ts";
 
 const QODER_API = "qoder-api" as Api;
 
@@ -45,7 +45,7 @@ async function refreshModels(mode: QoderMode, context: RefreshModelsContext): Pr
 export function createQoderProvider(mode: QoderMode): Provider<Api> {
   const region = getQoderRegionConfig(mode);
   const api = lazyApi(async () => {
-    const { streamQoder } = await import("./protocol/stream.js");
+    const { streamQoder } = await import("./protocol/stream.ts");
     return { stream: streamQoder, streamSimple: streamQoder };
   });
   return createProvider<Api>({

@@ -94,10 +94,12 @@ export class ThinkingTagParser {
   private lastTextBlockIndex: number | null = null;
   private activeEndTag: string = THINKING_TAG_VARIANTS[0].close;
 
-  constructor(
-    private output: AssistantMessage,
-    private stream: AssistantMessageEventStream,
-  ) {}
+  private output: AssistantMessage;
+  private stream: AssistantMessageEventStream;
+
+  constructor(output: AssistantMessage, stream: AssistantMessageEventStream) {
+    this.output = output;
+    this.stream = stream;}
 
   processChunk(chunk: string): void {
     this.textBuffer += chunk;

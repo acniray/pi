@@ -24,7 +24,7 @@ async function refreshModels(mode: QoderMode, context: RefreshModelsContext): Pr
   } else if (credential?.type === "api_key" && credential.key) {
     token = await resolveQoderJobToken(credential.key, mode);
   } else {
-    const env = typeof process !== "undefined" ? process.env : {};
+    const env: Record<string, string | undefined> = typeof process !== "undefined" ? process.env : {};
     for (const name of getQoderRegionConfig(mode).patEnvNames) {
       const value = env[name];
       if (value) {

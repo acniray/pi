@@ -15,14 +15,14 @@ import {
   type ToolCall,
   type TranscriptContext,
 } from "../../../types.ts";
-import { resolveQoderIdentity } from "../auth/oauth.js";
-import { getCachedModelConfig, MAX_OUTPUT_TOKENS, type QoderModelEntry } from "../catalog.js";
-import { buildAuthHeaders, getMachineId } from "../cosy.js";
-import { applyQoderCredits } from "../credits.js";
-import { getQoderChatURL, getQoderRegionConfig } from "../region.js";
-import { qoderEncodeBody } from "./encoding.js";
-import { isDegenerateDsmlTurn, stripDsmlResidue, stripThinkingTags, ThinkingTagParser } from "./thinking.js";
-import { transformMessagesForQoder, transformTools } from "./transform.js";
+import { resolveQoderIdentity } from "../auth/oauth.ts";
+import { getCachedModelConfig, MAX_OUTPUT_TOKENS, type QoderModelEntry } from "../catalog.ts";
+import { buildAuthHeaders, getMachineId } from "../cosy.ts";
+import { applyQoderCredits } from "../credits.ts";
+import { getQoderChatURL, getQoderRegionConfig } from "../region.ts";
+import { qoderEncodeBody } from "./encoding.ts";
+import { isDegenerateDsmlTurn, stripDsmlResidue, stripThinkingTags, ThinkingTagParser } from "./thinking.ts";
+import { transformMessagesForQoder, transformTools } from "./transform.ts";
 
 /**
  * Qoder's scheduler reports a busy model as error code 10605. The official
